@@ -6,10 +6,9 @@ import Ashen.patch.ClassEnum;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
@@ -25,6 +24,7 @@ public class TheAshen extends CustomPlayer {
     private static final String ASHEN_CORPSE = "images/char/corpse.png";
     private static final String ASHEN_SKELETON_ATLAS = "images/char/skeleton.atlas";
     private static final String ASHEN_SKELETON_JSON = "images/char/skeleton.json";
+    private static final String ASHEN = "images/char/ironcladPortrait.jpg";
 
     private static final String TITLE = "The Accursed";
     private static final String FLAVOUR = "An accursed undead, destined to become hollow";
@@ -35,26 +35,22 @@ public class TheAshen extends CustomPlayer {
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 220.0F * Settings.scale);
 
-        initializeClass(null, ASHEN_SHOULDER_2,
+        this.initializeClass(ASHEN, ASHEN_SHOULDER_2,
                 ASHEN_SHOULDER_1, ASHEN_CORPSE, getLoadout(),
                 20.0F, -10.0F, 220.0F, 290.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
         loadAnimation(ASHEN_SKELETON_ATLAS, ASHEN_SKELETON_JSON, 1.0F);
-
-        AnimationState.TrackEntry e = this.state.setAnimation (0, "animation", true);
-        e.setTime(e.getEndTime()* MathUtils.random());
     }
 
     public ArrayList<String> getStartingDeck(){
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Strike");
+        retVal.add("Strike_Red");
         return retVal;
     }
 
     public ArrayList<String> getStartingRelics(){
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Burning Blood");
         return retVal;
     }
 
@@ -83,7 +79,7 @@ public class TheAshen extends CustomPlayer {
     }
 
     public AbstractCard getStartCardForEvent() {
-        return null;
+        return new Strike_Red();
     }
 
     public Color getCardTrailColor() {
@@ -95,7 +91,7 @@ public class TheAshen extends CustomPlayer {
     }
 
     public BitmapFont getEnergyNumFont() {
-        return null;
+        return new BitmapFont();
     }
 
     public void doCharSelectScreenSelectEffect() {}
@@ -105,7 +101,7 @@ public class TheAshen extends CustomPlayer {
     }
 
     public String getLocalizedCharacterName() {
-        return null;
+        return TITLE;
     }
 
     public AbstractPlayer newInstance() {
@@ -113,11 +109,11 @@ public class TheAshen extends CustomPlayer {
     }
 
     public String getSpireHeartText() {
-        return null;
+        return "";
     }
 
     public Color getSlashAttackColor() {
-        return null;
+        return Ashen.SOULS;
     }
 
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
@@ -125,7 +121,7 @@ public class TheAshen extends CustomPlayer {
     }
 
     public String getVampireText() {
-        return null;
+        return "";
     }
 
 }
