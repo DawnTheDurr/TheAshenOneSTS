@@ -1,0 +1,10 @@
+{
+  "modid": "test",
+  "name": "The Ashen One",
+  "author_list": ["nuclear_burger"],
+  "description": "Implements a dark souls themed character.",
+  "version": "0.1",
+  "sts_version": "",
+  "mts_version": "",
+  "dependencies": ["basemod"]
+}
