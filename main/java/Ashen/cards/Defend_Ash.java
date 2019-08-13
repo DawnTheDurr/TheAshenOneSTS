@@ -15,7 +15,7 @@ public class Defend_Ash extends CustomCard {
     //private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String NAME = "Defend";
     public static final String DESCRIP = "Basic Block";
-    public static final String IMG = "images/cards/attacks/defend.png";
+    public static final String IMG = "images/cards/skills/defend.png";
 
     private static final int COST = 1;
     private static final int BLOCK = 5;
