@@ -1,20 +1,27 @@
 package Ashen;
 
+import Ashen.cards.Defend_Ash;
+import Ashen.cards.Strike_Ash;
 import Ashen.character.TheAshen;
 import Ashen.patch.ClassEnum;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditCharactersSubscriber;
+import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+
+import java.util.ArrayList;
 
 import static Ashen.patch.CardEnum.THE_ASHEN_ONE_COLOR;
 
 @SpireInitializer
 
-public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber {
+public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber, EditCardsSubscriber, EditRelicsSubscriber {
 
     public static final Color SOULS = CardHelper.getColor(60f, 26f, 81f);
 
@@ -32,6 +39,8 @@ public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber
     private static final String ENERGY_PORT = "images/cards/portrait/orbPort";
 
     private static final String ENERGY_ORB = "images/cards/portrait/orb.png";
+
+    private ArrayList<AbstractCard> cardList = new ArrayList<>();
 
     public Ashen(){
         BaseMod.subscribe(this);
@@ -56,5 +65,27 @@ public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber
     @Override
     public void receivePostInitialize() {
         ModPanel modPanel = new ModPanel();
+    }
+
+    private void createCardList(){
+        cardList.clear();
+
+        cardList.add(new Strike_Ash());
+        cardList.add(new Defend_Ash());
+    }
+
+    @Override
+    public void receiveEditCards() {
+
+        createCardList();
+
+        for (AbstractCard c: cardList){
+            BaseMod.addCard(c);
+        }
+    }
+
+    @Override
+    public void receiveEditRelics() {
+
     }
 }

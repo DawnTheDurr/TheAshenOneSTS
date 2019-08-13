@@ -45,7 +45,16 @@ public class TheAshen extends CustomPlayer {
 
     public ArrayList<String> getStartingDeck(){
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Strike_Red");
+        retVal.add("Strike_Ash");
+        retVal.add("Strike_Ash");
+        retVal.add("Strike_Ash");
+        retVal.add("Strike_Ash");
+        retVal.add("Strike_Ash");
+        retVal.add("Defend_Ash");
+        retVal.add("Defend_Ash");
+        retVal.add("Defend_Ash");
+        retVal.add("Defend_Ash");
+        retVal.add("Defend_Ash");
         return retVal;
     }
 
