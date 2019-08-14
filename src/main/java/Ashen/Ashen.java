@@ -4,6 +4,8 @@ import Ashen.cards.Defend_Ash;
 import Ashen.cards.Strike_Ash;
 import Ashen.character.TheAshen;
 import Ashen.patch.ClassEnum;
+import Ashen.relics.Darksign;
+import Ashen.relics.Hollow;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import basemod.interfaces.EditCardsSubscriber;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,8 @@ import static Ashen.patch.CardEnum.THE_ASHEN_ONE_COLOR;
 
 @SpireInitializer
 
-public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber, EditCardsSubscriber, EditRelicsSubscriber {
+public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber,
+        EditCardsSubscriber, EditRelicsSubscriber {
 
     public static final Color SOULS = CardHelper.getColor(60f, 26f, 81f);
 
@@ -41,6 +45,7 @@ public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber
     private static final String ENERGY_ORB = "images/cards/portrait/orb.png";
 
     private ArrayList<AbstractCard> cardList = new ArrayList<>();
+    private ArrayList<AbstractRelic> relicList = new ArrayList<>();
 
     public Ashen(){
         BaseMod.subscribe(this);
@@ -84,8 +89,20 @@ public class Ashen implements EditCharactersSubscriber, PostInitializeSubscriber
         }
     }
 
+    private void createCustRelicList(){
+        relicList.clear();
+
+        relicList.add(new Darksign());
+        relicList.add(new Hollow());
+    }
+
     @Override
     public void receiveEditRelics() {
 
+        createCustRelicList();
+
+        for (AbstractRelic r: relicList){
+            BaseMod.addRelicToCustomPool(r, THE_ASHEN_ONE_COLOR);
+        }
     }
 }

@@ -2,7 +2,7 @@ package Ashen.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class Hollow extends CustomRelic {
 
@@ -11,7 +11,7 @@ public class Hollow extends CustomRelic {
     private boolean isActive = true;
 
     public Hollow(){
-        super(ID, ImageMaster.loadImage(IMG), RelicTier.STARTER, LandingSound.MAGICAL);
+        super(ID, IMG, RelicTier.STARTER, LandingSound.MAGICAL);
     }
 
     @Override
@@ -24,5 +24,8 @@ public class Hollow extends CustomRelic {
         }
     }
 
-
+    @Override
+    public AbstractRelic makeCopy(){
+        return new Hollow();
+    }
 }

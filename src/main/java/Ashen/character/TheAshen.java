@@ -60,6 +60,7 @@ public class TheAshen extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics(){
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add("Darksign");
         return retVal;
     }
 
