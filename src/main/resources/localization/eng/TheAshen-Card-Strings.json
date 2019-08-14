@@ -1,0 +1,10 @@
+{
+  "Ashen:Strike_Ash": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+	},
+	"Ashen:Rest": {
+    "NAME": "Rest",
+    "DESCRIPTION": "Restore your and your ENEMIES full health"
+	}
+}
